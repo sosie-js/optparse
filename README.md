@@ -87,8 +87,18 @@ Please report bugs at <http://github.com/gvvaughan/optparse/issues>.
 ]]
 
 local parser = OptionParser (help)
-local arg, opts = parser:parse (_G.arg)
-```
+--Prevent baby crying when no nappy given
+--init.lua:186: attempt to index local 'arglist' (a nil value)
+if _G.arg ~= nil then
+   local arg, opts = parser:parse (_G.arg)
+   --Just a dump to see you can check if the baby listened what you told him
+   for x, v in pairs(opts) do 
+         print(x, v) 
+    end
+else
+  --add your parser:on(..) stuff
+end
+
 
 
 
